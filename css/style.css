@@ -1,0 +1,119 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #f8f9fa;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(90deg, #ff5722, #ff9800);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* BANNER */
+.banner {
+    background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.banner h2 {
+    font-size: 40px;
+}
+
+/* CONTAINER */
+.container {
+    padding: 30px;
+}
+
+/* FOOD LIST */
+.food-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* CARD */
+.food-item {
+    background: white;
+    width: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.food-item:hover {
+    transform: translateY(-8px);
+}
+
+/* IMAGE */
+.food-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* CONTENT */
+.food-item h3 {
+    margin: 10px;
+}
+
+.food-item p {
+    margin: 0 10px;
+    color: #ff5722;
+    font-weight: bold;
+}
+
+/* BUTTON */
+.food-item a {
+    display: block;
+    margin: 10px;
+    padding: 8px;
+    text-align: center;
+    background: #ff5722;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.food-item a:hover {
+    background: #e64a19;
+}
+
+/* DETAIL */
+.detail {
+    text-align: center;
+}
+
+.detail img {
+    width: 350px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}

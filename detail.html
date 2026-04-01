@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết món</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Chi tiết món ăn</h1>
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html">Món ăn</a>
+    </nav>
+</header>
+
+<section class="container detail">
+
+    <img id="food-img">
+    <h2 id="food-name"></h2>
+    <p id="food-desc"></p>
+    <h3 id="food-price"></h3>
+
+</section>
+
+<footer>
+    <p>© 2026 Food App</p>
+</footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const item = params.get("item");
+
+const data = {
+    pizza: {
+        name: "Pizza",
+        img: "assets/images/pizza.jpg",
+        desc: "Pizza thơm ngon với phô mai béo ngậy và topping hấp dẫn.",
+        price: "120.000đ"
+    },
+    burger: {
+        name: "Burger",
+        img: "assets/images/burger.jpg",
+        desc: "Burger bò với rau tươi và sốt đặc biệt.",
+        price: "80.000đ"
+    },
+    garan: {
+        name: "Gà rán",
+        img: "assets/images/garan.jpg",
+        desc: "Gà rán giòn rụm, thơm ngon hấp dẫn.",
+        price: "90.000đ"
+    }
+};
+
+const food = data[item];
+
+if (food) {
+    document.getElementById("food-img").src = food.img;
+    document.getElementById("food-name").innerText = food.name;
+    document.getElementById("food-desc").innerText = food.desc;
+    document.getElementById("food-price").innerText = food.price;
+} else {
+    document.querySelector(".container").innerHTML = "<h2>Không tìm thấy món ăn</h2>";
+}
+</script>
+
+</body>
+</html>
