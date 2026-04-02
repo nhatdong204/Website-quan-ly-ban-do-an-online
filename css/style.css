@@ -78,7 +78,7 @@ nav a:hover {
 
 .food-item p {
     margin: 0 10px;
-    color: #ff5722;
+    color: #f6f5f5;
     font-weight: bold;
 }
 
@@ -88,14 +88,14 @@ nav a:hover {
     margin: 10px;
     padding: 8px;
     text-align: center;
-    background: #ff5722;
-    color: white;
+    background: #ef3f04;
+    color: rgb(226, 218, 218);
     border-radius: 8px;
     text-decoration: none;
 }
 
 .food-item a:hover {
-    background: #e64a19;
+    background: #db3a09;
 }
 
 /* DETAIL */
@@ -112,8 +112,51 @@ nav a:hover {
 /* FOOTER */
 footer {
     background: #222;
-    color: white;
+    color: rgb(240, 9, 9);
     text-align: center;
     padding: 15px;
     margin-top: 30px;
+}
+.footer {
+    background: #222;
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    width: 23%;
+    margin-bottom: 20px;
+}
+
+.footer-col h3 {
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+.footer-col p,
+.footer-col a {
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 14px;
 }
