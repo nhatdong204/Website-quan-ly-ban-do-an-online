@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Food App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<header>
+    <h1>🍔 Food App</h1>
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html">Món ăn</a>
+        <a href="login.html" class="active">Đăng nhập</a>
+        <a href="profile.html" id="profileLink" style="display: none;">Tài khoản</a>
+        <a href="#" id="logoutLink" style="display: none;" onclick="logout(event)">Đăng xuất</a>
+    </nav>
+</header>
+
+<section class="auth-container">
+    <div class="auth-box login-box">
+        <div class="text-center mb-4">
+            <h1 class="brand-title">🍔 Food App</h1>
+            <h2 class="auth-title">Đăng nhập tài khoản</h2>
+            <p class="text-muted">Quản lý đơn hàng và tài khoản của bạn</p>
+        </div>
+        
+        <form id="loginForm" class="auth-form" action="#" method="POST">
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Email hoặc Tên đăng nhập</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-control form-control-lg"
+                    placeholder="abc@gmail.com"
+                    required>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-control form-control-lg"
+                    placeholder="Nhập mật khẩu"
+                    required>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                <label class="form-check-label" for="remember">
+                    Nhớ đăng nhập
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-orange btn-lg w-100 mb-3 fw-bold">Đăng nhập</button>
+        </form>
+
+        <div class="d-flex justify-content-between text-center mb-3 small">
+            <a href="forgot-password.html" class="text-decoration-none text-orange">Quên mật khẩu?</a>
+            <span class="text-muted">|</span>
+            <a href="signup.html" class="text-decoration-none text-orange">Đăng ký tài khoản</a>
+        </div>
+
+        <div class="position-relative mb-3">
+            <hr>
+            <span class="position-absolute top-50 start-50 translate-middle bg-white px-2 text-muted">HOẶC</span>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-primary btn-lg social-btn facebook-btn">
+                <i class="fab fa-facebook-f me-2"></i>
+                <span>Đăng nhập với Facebook</span>
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-lg social-btn google-btn">
+                <i class="fab fa-google me-2"></i>
+                <span>Đăng nhập với Google</span>
+            </button>
+        </div>
+
+        <div class="text-center mt-4 text-muted small">
+            <p>Bằng cách tiếp tục, bạn đồng ý với <a href="#" class="text-decoration-none text-orange">Điều khoản dịch vụ</a></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2026 Food App. Bản quyền được bảo vệ.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Kiểm tra đã đăng nhập chưa
+    function checkLoginStatus() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const profileLink = document.getElementById('profileLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (isLoggedIn === 'true') {
+            // Ẩn form đăng nhập, hiển thị thông báo
+            document.querySelector('.auth-form').innerHTML = `
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>Bạn đã đăng nhập!</strong> Chuyển hướng đến trang cá nhân...
+                </div>
+            `;
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 2000);
+
+            if (profileLink) profileLink.style.display = 'block';
+            if (logoutLink) logoutLink.style.display = 'block';
+        } else {
+            // Hiển thị link đăng nhập
+            const loginLink = document.querySelector('nav a[href="login.html"]');
+            if (loginLink) loginLink.style.display = 'block';
+        }
+    }
+
+    // Đăng xuất
+    function logout(e) {
+        if (e) e.preventDefault();
+        
+        if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userData');
+            alert('Bạn đã đăng xuất thành công!');
+            window.location.href = 'index.html';
+        }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        if (email && password) {
+            // Lưu thông tin đăng nhập
+            const userData = {
+                email: email,
+                fullname: email.split('@')[0], // Mô phỏng lấy tên từ email
+                phone: '',
+                isLoggedIn: true
+            };
+
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show';
+            alertDiv.innerHTML = `
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>Thành công!</strong> Đăng nhập thành công. Chào mừng, <strong>${email}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 2000);
+        }
+    });
+
+    // Social login handlers
+    document.querySelector('.facebook-btn').addEventListener('click', function() {
+        alert('Chuyển hướng đến Facebook. Tính năng này cần cấu hình backend OAuth.');
+    });
+
+    document.querySelector('.google-btn').addEventListener('click', function() {
+        alert('Chuyển hướng đến Google. Tính năng này cần cấu hình backend OAuth.');
+    });
+
+    // Check login status khi trang load
+    window.addEventListener('load', checkLoginStatus);
+</script>
+
+</body>
+</html>

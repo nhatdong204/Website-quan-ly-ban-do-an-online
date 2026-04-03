@@ -12,6 +12,10 @@
     <nav>
         <a href="index.html">Trang chủ</a>
         <a href="menu.html">Món ăn</a>
+        <a href="login.html" id="loginLink">Đăng nhập</a>
+        <a href="signup.html" id="signupLink">Đăng ký</a>
+        <a href="profile.html" id="profileLink" style="display: none;">Tài khoản</a>
+        <a href="#" id="logoutLink" style="display: none;" onclick="logout(event)">Đăng xuất</a>
     </nav>
 </header>
 
@@ -89,3 +93,37 @@
 
 </body>
 </html>
+
+<script>
+function logout(e) {
+    if (e) e.preventDefault();
+    if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userData');
+        alert('Bạn đã đăng xuất thành công!');
+        location.reload();
+    }
+}
+
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const loginLink = document.getElementById('loginLink');
+    const signupLink = document.getElementById('signupLink');
+    const profileLink = document.getElementById('profileLink');
+    const logoutLink = document.getElementById('logoutLink');
+
+    if (isLoggedIn === 'true') {
+        loginLink.style.display = 'none';
+        signupLink.style.display = 'none';
+        profileLink.style.display = 'block';
+        logoutLink.style.display = 'block';
+    } else {
+        loginLink.style.display = 'block';
+        signupLink.style.display = 'block';
+        profileLink.style.display = 'none';
+        logoutLink.style.display = 'none';
+    }
+}
+
+window.addEventListener('load', checkLoginStatus);
+</script>
