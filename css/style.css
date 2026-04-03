@@ -12,17 +12,38 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 nav a {
     color: white;
-    margin: 0 15px;
+    padding: 8px 12px;
     text-decoration: none;
     font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+nav a.active {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* BANNER */

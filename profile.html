@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ cá nhân - Food App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<header>
+    <h1>🍔 Food App</h1>
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="menu.html">Món ăn</a>
+        <a href="profile.html" class="active">Tài khoản</a>
+        <a href="#" onclick="logout(event)">Đăng xuất</a>
+    </nav>
+</header>
+
+<section class="profile-container">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Menu -->
+            <div class="col-lg-3 mb-4">
+                <div class="profile-sidebar">
+                    <div class="profile-header text-center mb-4">
+                        <img src="https://via.placeholder.com/120?text=User" class="profile-avatar" alt="Avatar">
+                        <h5 class="mt-3" id="userName">Nguyễn Văn A</h5>
+                        <p class="text-muted small" id="userEmail">user@example.com</p>
+                    </div>
+
+                    <nav class="profile-menu list-unstyled">
+                        <li class="menu-item active" onclick="switchTab('info')">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-user me-2"></i>Thông tin cá nhân
+                            </a>
+                        </li>
+                        <li class="menu-item" onclick="switchTab('address')">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ giao hàng
+                            </a>
+                        </li>
+                        <li class="menu-item" onclick="switchTab('orders')">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-shopping-bag me-2"></i>Lịch sử đơn hàng
+                            </a>
+                        </li>
+                        <li class="menu-item" onclick="switchTab('security')">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-lock me-2"></i>Bảo mật
+                            </a>
+                        </li>
+                        <li class="menu-item" onclick="switchTab('settings')">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-cog me-2"></i>Cài đặt
+                            </a>
+                        </li>
+                        <hr>
+                        <li class="menu-item" onclick="logout()">
+                            <a href="#" onclick="event.preventDefault()">
+                                <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                            </a>
+                        </li>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Thông tin cá nhân -->
+                <div id="infoTab" class="profile-content active">
+                    <div class="card">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-user me-2"></i>Thông tin cá nhân
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="infoForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Họ và tên</label>
+                                        <input type="text" class="form-control" value="Nguyễn Văn A" id="fullNameInput">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" value="user@example.com" id="emailInput">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Số điện thoại</label>
+                                        <input type="tel" class="form-control" value="0904123456" id="phoneInput">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Ngày sinh</label>
+                                        <input type="date" class="form-control" value="1995-01-15">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Giới tính</label>
+                                    <select class="form-select">
+                                        <option>Nam</option>
+                                        <option>Nữ</option>
+                                        <option>Khác</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-orange">
+                                    <i class="fas fa-save me-2"></i>Lưu thay đổi
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Địa chỉ giao hàng -->
+                <div id="addressTab" class="profile-content">
+                    <div class="card">
+                        <div class="card-header bg-orange text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ giao hàng
+                            </h5>
+                            <button class="btn btn-sm btn-light" onclick="showAddAddressForm()">
+                                <i class="fas fa-plus me-1"></i>Thêm địa chỉ
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="addressList">
+                                <div class="address-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">
+                                                <badge class="badge bg-orange">Mặc định</badge>
+                                                Nhà riêng
+                                            </h6>
+                                            <p class="text-muted mb-1">Số 123, Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
+                                            <p class="text-muted small mb-0">Điện thoại: 0904123456</p>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-2">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lịch sử đơn hàng -->
+                <div id="ordersTab" class="profile-content">
+                    <div class="card">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-shopping-bag me-2"></i>Lịch sử đơn hàng
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#001</td>
+                                            <td>15/03/2026</td>
+                                            <td>250.000đ</td>
+                                            <td><span class="badge bg-success">Đã giao</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#002</td>
+                                            <td>18/03/2026</td>
+                                            <td>180.000đ</td>
+                                            <td><span class="badge bg-warning">Đang giao</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#003</td>
+                                            <td>20/03/2026</td>
+                                            <td>320.000đ</td>
+                                            <td><span class="badge bg-info">Chờ xác nhận</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bảo mật -->
+                <div id="securityTab" class="profile-content">
+                    <div class="card">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-lock me-2"></i>Bảo mật
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="security-item mb-4 pb-4 border-bottom">
+                                <h6>Mật khẩu</h6>
+                                <p class="text-muted">Thay đổi mật khẩu của tài khoản</p>
+                                <button class="btn btn-outline-primary" onclick="showChangePasswordForm()">
+                                    <i class="fas fa-key me-2"></i>Thay đổi mật khẩu
+                                </button>
+                            </div>
+
+                            <div class="security-item mb-4 pb-4 border-bottom">
+                                <h6>Xác minh hai lớp</h6>
+                                <p class="text-muted">Bảo vệ tài khoản của bạn bằng xác minh hai lớp</p>
+                                <button class="btn btn-outline-success">
+                                    <i class="fas fa-shield-alt me-2"></i>Kích hoạt
+                                </button>
+                            </div>
+
+                            <div class="security-item">
+                                <h6>Các phiên đăng nhập</h6>
+                                <p class="text-muted">Quản lý các thiết bị đã đăng nhập</p>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-laptop me-2"></i>Xem phiên
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cài đặt -->
+                <div id="settingsTab" class="profile-content">
+                    <div class="card">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-cog me-2"></i>Cài đặt
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="setting-item mb-4 pb-4 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6>Thông báo qua Email</h6>
+                                        <p class="text-muted small">Nhận thông báo về đơn hàng và khuyến mãi</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-item mb-4 pb-4 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6>Thông báo qua SMS</h6>
+                                        <p class="text-muted small">Nhận thông báo qua tin nhắn</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="smsNotif">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-item mb-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6>Nhận khuyến mãi</h6>
+                                        <p class="text-muted small">Nhận thông tin về các chương trình khuyến mãi mới</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="promoNotif" checked>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2026 Food App. Bản quyền được bảo vệ.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Mô phỏng dữ liệu người dùng từ localStorage
+    function loadUserData() {
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+            const user = JSON.parse(userData);
+            document.getElementById('userName').textContent = user.fullname || 'Nguyễn Văn A';
+            document.getElementById('userEmail').textContent = user.email || 'user@example.com';
+            document.getElementById('fullNameInput').value = user.fullname || '';
+            document.getElementById('emailInput').value = user.email || '';
+            document.getElementById('phoneInput').value = user.phone || '';
+        }
+    }
+
+    // Chuyển tab
+    function switchTab(tabName) {
+        // Ẩn tất cả tab
+        document.querySelectorAll('.profile-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Ẩn tất cả menu item active
+        document.querySelectorAll('.profile-menu .menu-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Hiển thị tab được chọn
+        const selectedTab = document.getElementById(tabName + 'Tab');
+        if (selectedTab) {
+            selectedTab.classList.add('active');
+        }
+
+        // Highlight menu item
+        event.target.closest('.menu-item')?.classList.add('active');
+    }
+
+    // Đăng xuất
+    function logout(e) {
+        if (e) e.preventDefault();
+        
+        if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+            localStorage.removeItem('userData');
+            localStorage.removeItem('isLoggedIn');
+            alert('Bạn đã đăng xuất thành công!');
+            window.location.href = 'index.html';
+        }
+    }
+
+    // Lưu thay đổi thông tin
+    document.getElementById('infoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullNameInput').value;
+        const email = document.getElementById('emailInput').value;
+        const phone = document.getElementById('phoneInput').value;
+
+        const userData = {
+            fullname,
+            email,
+            phone
+        };
+
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-success alert-dismissible fade show';
+        alertDiv.innerHTML = `
+            <i class="fas fa-check-circle me-2"></i>
+            <strong>Thành công!</strong> Thông tin của bạn đã được cập nhật.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.querySelector('.profile-content.active').insertBefore(alertDiv, document.querySelector('.profile-content.active').firstChild);
+    });
+
+    // Các hàm placeholder
+    function showChangePasswordForm() {
+        alert('Tính năng thay đổi mật khẩu sẽ được kích hoạt khi kết nối backend');
+    }
+
+    function showAddAddressForm() {
+        alert('Tính năng thêm địa chỉ sẽ được kích hoạt khi kết nối backend');
+    }
+
+    // Load dữ liệu người dùng khi trang tải
+    loadUserData();
+</script>
+
+</body>
+</html>
