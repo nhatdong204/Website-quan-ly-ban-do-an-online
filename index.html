@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Trang chủ</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- THÊM ICON -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -12,6 +16,14 @@
     <nav>
         <a href="index.html">Trang chủ</a>
         <a href="menu.html">Món ăn</a>
+
+        <!-- THÊM GIỎ HÀNG -->
+        <a href="cart.html">
+            <i class="fa fa-shopping-cart"></i> Giỏ hàng
+            <span id="cart-count">0</span>
+        </a>
+
+        <!-- GIỮ NGUYÊN -->
         <a href="login.html" id="loginLink">Đăng nhập</a>
         <a href="signup.html" id="signupLink">Đăng ký</a>
         <a href="profile.html" id="profileLink" style="display: none;">Tài khoản</a>
@@ -31,20 +43,27 @@
 
         <!-- Pizza -->
         <div class="food-item">
-    <a href="detail.html?item=pizza">
-        <img src="assets/images/pizza.jpg">
-        <h3>Pizza</h3>
-        <p>120.000đ</p>
-    </a>
-</div>
+            <a href="detail.html?item=pizza">
+                <img src="assets/images/pizza.jpg">
+                <h3>Pizza</h3>
+                <p>120.000đ</p>
+            </a>
 
-<div class="food-item">
-    <a href="detail.html?item=burger">
-        <img src="assets/images/burger.jpg">
-        <h3>Burger</h3>
-        <p>80.000đ</p>
-    </a>
-</div>
+            <!-- THÊM -->
+            <button onclick="addToCart('Pizza',120000)">Thêm vào giỏ</button>
+        </div>
+
+        <!-- Burger -->
+        <div class="food-item">
+            <a href="detail.html?item=burger">
+                <img src="assets/images/burger.jpg">
+                <h3>Burger</h3>
+                <p>80.000đ</p>
+            </a>
+
+            <!-- THÊM -->
+            <button onclick="addToCart('Burger',80000)">Thêm vào giỏ</button>
+        </div>
 
     </div>
 </section>
@@ -53,13 +72,11 @@
     <footer class="footer">
     <div class="footer-container">
 
-        <!-- Cột 1: Giới thiệu -->
         <div class="footer-col">
             <h3>🍔 Food App</h3>
             <p>Chuyên cung cấp các món ăn ngon, nhanh và tiện lợi mỗi ngày.</p>
         </div>
 
-        <!-- Cột 2: Liên hệ -->
         <div class="footer-col">
             <h3>Liên hệ</h3>
             <p>📍 Địa chỉ: 123 Nguyễn Văn A, TP.HCM</p>
@@ -67,7 +84,6 @@
             <p>📧 Email: foodapp@gmail.com</p>
         </div>
 
-        <!-- Cột 3: Mạng xã hội -->
         <div class="footer-col">
             <h3>Theo dõi chúng tôi</h3>
             <p><a href="#">Facebook</a></p>
@@ -75,7 +91,6 @@
             <p><a href="#">TikTok</a></p>
         </div>
 
-        <!-- Cột 4: Hỗ trợ -->
         <div class="footer-col">
             <h3>Hỗ trợ</h3>
             <p><a href="#">Chính sách bảo mật</a></p>
@@ -91,9 +106,10 @@
 </footer>
 </footer>
 
-</body>
-</html>
+<!-- THÊM JS GIỎ HÀNG -->
+<script src="js/index.js"></script>
 
+<!-- GIỮ NGUYÊN LOGIN -->
 <script>
 function logout(e) {
     if (e) e.preventDefault();
@@ -127,3 +143,6 @@ function checkLoginStatus() {
 
 window.addEventListener('load', checkLoginStatus);
 </script>
+
+</body>
+</html>
