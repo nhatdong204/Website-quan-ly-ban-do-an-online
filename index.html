@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <title>Trang chủ</title>
 
@@ -13,6 +14,7 @@
 
 <header>
     <h1>🍔 Food App</h1>
+<<<<<<< HEAD
     <nav>
         <a href="index.html">Trang chủ</a>
         <a href="menu.html">Món ăn</a>
@@ -29,6 +31,15 @@
         <a href="profile.html" id="profileLink" style="display: none;">Tài khoản</a>
         <a href="#" id="logoutLink" style="display: none;" onclick="logout(event)">Đăng xuất</a>
     </nav>
+=======
+   <nav>
+    <a href="index.html">Trang chủ</a>
+   <a href="cart.html">
+    <i class="fa fa-shopping-cart"></i> Giỏ hàng
+    <span id="cart-count">0</span>
+</a>
+</nav>
+>>>>>>> 4a673ff (add cart)
 </header>
 
 <section class="banner">
@@ -43,6 +54,7 @@
 
         <!-- Pizza -->
         <div class="food-item">
+<<<<<<< HEAD
             <a href="detail.html?item=pizza">
                 <img src="assets/images/pizza.jpg">
                 <h3>Pizza</h3>
@@ -64,6 +76,24 @@
             <!-- THÊM -->
             <button onclick="addToCart('Burger',80000)">Thêm vào giỏ</button>
         </div>
+=======
+    <a href="detail.html?item=pizza">
+        <img src="assets/images/pizza.jpg">
+        <h3>Pizza</h3>
+        <p>120.000đ</p>
+    </a>
+    <button onclick="addToCart('Pizza',120000)">Thêm vào giỏ</button>
+</div>
+
+<div class="food-item">
+    <a href="detail.html?item=burger">
+        <img src="assets/images/burger.jpg">
+        <h3>Burger</h3>
+        <p>80.000đ</p>
+    </a>
+    <button onclick="addToCart('Burger',80000)">Thêm vào giỏ</button>
+</div>
+>>>>>>> 4a673ff (add cart)
 
     </div>
 </section>
@@ -105,6 +135,7 @@
     </div>
 </footer>
 </footer>
+<<<<<<< HEAD
 
 <!-- THÊM JS GIỎ HÀNG -->
 <script src="js/index.js"></script>
@@ -144,5 +175,8 @@ function checkLoginStatus() {
 window.addEventListener('load', checkLoginStatus);
 </script>
 
+=======
+<script src="js/index.js"></script>
+>>>>>>> 4a673ff (add cart)
 </body>
 </html>
